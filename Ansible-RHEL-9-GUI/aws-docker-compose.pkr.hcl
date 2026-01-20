@@ -1,0 +1,79 @@
+packer {
+  required_plugins {
+    amazon = {
+      version = ">= 0.0.2"
+      source  = "github.com/hashicorp/amazon"
+    }
+  }
+}
+locals {
+  tags = {
+    Name        = "ansible-rhel-9-GUI-{{timestamp}}"
+    Creator     = "cloudkida"
+    Environment = "Prod"
+  }
+}
+
+source "amazon-ebs" "ansible-rhel-9" {
+  ami_name      = "ansible-rhel-9-GUI"
+  instance_type = "t3a.medium"
+  region        = "ap-south-1"
+  source_ami_filter {
+    filters = {
+      name                = "RHEL-9.0.0_HVM-20230313-x86_64-43-Hourly2-GP2"
+      root-device-type    = "ebs"
+      virtualization-type = "hvm"
+    }
+    most_recent = true
+    owners      = ["309956199498"]
+  }
+  launch_block_device_mappings {
+    volume_type           = "gp2"
+    device_name           = "/dev/sda1"
+    delete_on_termination = true
+    volume_size           = 10
+  }
+  ssh_username = "ec2-user"
+  tags         = local.tags
+
+}
+
+build {
+  name    = "ansible-rhel-9-GUI"
+  sources = ["source.amazon-ebs.ansible-rhel-9"]
+
+
+
+  provisioner "file" {
+    destination = "/tmp/cloud.cfg"
+    source      = "config/deafults.cfg"
+  }
+
+  provisioner "shell" {
+    inline = ["sudo mv /tmp/cloud.cfg /etc/cloud/cloud.cfg.d/defaults.cfg"]
+  }
+
+  provisioner "file" {
+    destination = "/tmp/motd.txt"
+    source      = "scripts/motd.txt"
+  }
+
+  provisioner "shell" {
+    inline = ["sudo mv /tmp/motd.txt /etc/motd"]
+  }
+
+  provisioner "shell" {
+    execute_command = "echo 'ec2-user' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
+    script          = "scripts/install_tools.sh"
+  }
+
+  provisioner "shell" {
+    execute_command = "echo 'ec2-user' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
+    script          = "scripts/setup.sh"
+  }
+
+  provisioner "shell" {
+    execute_command = "echo 'ec2-user' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
+    script          = "scripts/cleanup.sh"
+  }
+}

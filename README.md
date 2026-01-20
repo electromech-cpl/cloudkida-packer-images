@@ -245,9 +245,7 @@ Create an IAM user or role with the following permissions to build AMIs with Pac
 | [kali-2022-base-gui](./kali-2022-base-gui/) | Kali Linux 2022 with GUI | [View](./kali-2022-base-gui/) |
 | [kali-2023-base](./kali-2023-base/) | Kali Linux 2023 base | [View](./kali-2023-base/) |
 | [kali-2023-base-gui](./kali-2023-base-gui/) | Kali Linux 2023 with GUI | [View](./kali-2023-base-gui/) |
-| [caldera-ubuntu](./caldera-ubuntu/) | MITRE CALDERA on Ubuntu | [View](./caldera-ubuntu/) |
-| [DefectDojo-ubuntu](./DefectDojo-ubuntu/) | DefectDojo Security Platform | [View](./DefectDojo-ubuntu/) |
-| [InvinsenseXDR-4.9.2](./InvinsenseXDR-4.9.2/) | Invinsense XDR 4.9.2 | [View](./InvinsenseXDR-4.9.2/) |
+
 
 ### DevOps & Automation
 
@@ -255,7 +253,6 @@ Create an IAM user or role with the following permissions to build AMIs with Pac
 |-------|-------------|------|
 | [Ansible-RHEL-9-Base](./Ansible-RHEL-9-Base/) | RHEL 9 with Ansible | [View](./Ansible-RHEL-9-Base/) |
 | [Ansible-RHEL-9-GUI](./Ansible-RHEL-9-GUI/) | RHEL 9 with Ansible & GUI | [View](./Ansible-RHEL-9-GUI/) |
-| [Shuffle-ubuntu](./Shuffle-ubuntu/) | Shuffle SOAR Platform | [View](./Shuffle-ubuntu/) |
 
 ### RHCSA Training
 
@@ -270,11 +267,6 @@ Create an IAM user or role with the following permissions to build AMIs with Pac
 |-------|-------------|------|
 | [WordPress-rocky-9](./WordPress-rocky-9/) | WordPress on Rocky Linux 9 | [View](./WordPress-rocky-9/) |
 
-### Educational
-
-| Image | Description | Link |
-|-------|-------------|------|
-| [Parul-University](./Parul-University/) | Custom images for Parul University | [View](./Parul-University/) |
 
 ---
 
